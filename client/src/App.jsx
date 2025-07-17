@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
-import Notes from "./pages/Notes"; // You’ll create this
 import Documents from "./pages/Documents"; // You’ll create this
 import Editor from "./pages/Editor";
 import ProtectedRoute from "./components/routes/ProtectedRoute"; // 🔐 ProtectedRoute component
