@@ -8,8 +8,10 @@ const { setupSocket } = require('./config/socket')
 
 // importing routes
 const chatRoutes = require('./routes/chatRoutes')
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes')
 const documentRoutes = require('./routes/documentRoutes')
+const roomRoutes = require('./routes/roomRoutes')
+
 
 // configuring dotenv
 dotenv.config();
@@ -19,6 +21,7 @@ connectDB();
 
 const app = express()
 const server = http.createServer(app);
+const io = setupSocket(server);
 
 // middlewares
 app.use(express.json());
@@ -26,10 +29,13 @@ app.use(cors())
 app.use('/api', chatRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/documents', documentRoutes);
+app.use('/api/rooms', roomRoutes);
+app.use((req, res, next) => {
+    req.io = io;
+    next();
+});
 app.use(express.static('public'));
 
-// socket.io
-setupSocket(server);
 
 server.listen(port, () => {
     console.log(`RealTimeCollaboration app is listening on port ${port}`)

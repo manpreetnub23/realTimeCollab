@@ -9,10 +9,12 @@ import Notes from "./pages/Notes"; // You’ll create this
 import Documents from "./pages/Documents"; // You’ll create this
 import Editor from "./pages/Editor";
 import ProtectedRoute from "./components/routes/ProtectedRoute"; // 🔐 ProtectedRoute component
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
 	return (
 		<div className="h-screen flex flex-col bg-zinc-950">
+			<Toaster position="top-right" />
 			<Navbar />
 			<div className="flex-1">
 				<Routes>

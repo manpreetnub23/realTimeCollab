@@ -30,7 +30,7 @@ const Navbar = () => {
 					<>
 						<Link
 							to="/"
-							className="text-sm sm:text-base font-medium text-blue-300 hover:underline"
+							className="text-sm sm:text-base font-medium text-blue-300 hover:cursor-pointer hover:text-blue-700"
 						>
 							Dashboard
 						</Link>

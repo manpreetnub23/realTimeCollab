@@ -1,3 +1,4 @@
+const Room = require("../models/RoomModel");
 const { saveMessage } = require('../controllers/chatController');
 
 const setupSocket = (server) => {
@@ -26,10 +27,33 @@ const setupSocket = (server) => {
             }
         });
 
+        // Create Room (via socket)
+        socket.on("createRoom", async ({ name, username }) => {
+            try {
+                const existing = await Room.findOne({ name });
+                if (existing) {
+                    socket.emit("roomError", "Room already exists");
+                    return;
+                }
 
-        socket.on('disconnect', () => {
-            console.log('User disconnected:', socket.id);
+                const newRoom = await Room.create({
+                    name,
+                    createdBy: username,
+                    members: [username],
+                });
+
+                socket.join(name); // join the room
+                io.to(username).emit("newRoom", newRoom); // notify the user
+            } catch (err) {
+                console.error("Room creation error:", err);
+                socket.emit("roomError", "Server error while creating room");
+            }
         });
+
+        socket.on("leave-doc", (docId) => {
+            socket.leave(docId);
+        });
+
         socket.on("join-doc", (docId) => {
             socket.join(docId);
         });
@@ -38,10 +62,11 @@ const setupSocket = (server) => {
             socket.to(id).emit("receive-changes", content);
         });
 
-        socket.on("leave-doc", (docId) => {
-            socket.leave(docId);
+        socket.on('disconnect', () => {
+            console.log('User disconnected:', socket.id);
         });
     });
+    return io;
 }
 
 
