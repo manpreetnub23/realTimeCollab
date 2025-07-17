@@ -1,7 +1,7 @@
 // src/api/roomApi.js
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000/api/rooms";
+const BASE_URL = `https://realtimecollab-8.onrender.com/api/rooms`;
 
 // Fetch rooms by username
 export const fetchRooms = async (username) => {

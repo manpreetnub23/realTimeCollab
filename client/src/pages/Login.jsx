@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, LogIn, Mail, Lock } from "lucide-react";
 
-const url = "http://localhost:3000/api/auth";
+const url = `https://realtimecollab-8.onrender.com/api/auth`;
 
 const Login = () => {
 	const [username, setUsername] = useState("");

@@ -35,7 +35,7 @@ const Chat = () => {
 		const fetchMessages = async () => {
 			try {
 				const res = await axios.get(
-					`http://localhost:3000/api/messages/${currentRoom.name}?username=${username}`
+					`https://realtimecollab-8.onrender.com/api/messages/${currentRoom.name}?username=${username}`
 				);
 				setMessages(res.data);
 			} catch (err) {
