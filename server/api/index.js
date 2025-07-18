@@ -3,14 +3,14 @@ const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const http = require('http')
-const connectDB = require('./config/db')
-const { setupSocket } = require('./config/socket')
+const connectDB = require('../config/db')
+const { setupSocket } = require('../config/socket')
 
 // importing routes
-const chatRoutes = require('./routes/chatRoutes')
-const authRoutes = require('./routes/authRoutes')
-const documentRoutes = require('./routes/documentRoutes')
-const roomRoutes = require('./routes/roomRoutes')
+const chatRoutes = require('../routes/chatRoutes')
+const authRoutes = require('../routes/authRoutes')
+const documentRoutes = require('../routes/documentRoutes')
+const roomRoutes = require('../routes/roomRoutes')
 
 
 // configuring dotenv
