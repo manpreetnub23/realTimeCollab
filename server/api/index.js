@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 });
 app.use(express.static('public'));
 app.use(cors({
-    origin: 'https://real-time-collab-peach.vercel.app',
+    origin: ['https://real-time-collab-peach.vercel.app',],
     credentials: true,
 }));
 
