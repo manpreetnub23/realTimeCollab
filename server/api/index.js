@@ -38,6 +38,11 @@ app.use((req, res, next) => {
 });
 app.use(express.static('public'));
 
+// default route
+app.get('/', (req, res) => {
+    res.send("gurrakha ");
+})
+
 
 server.listen(port, () => {
     console.log(`RealTimeCollaboration app is listening on port ${port}`)
