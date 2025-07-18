@@ -1,11 +1,13 @@
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const fetchMessages = async (roomId) => {
+export const fetchMessages = async (roomId, before = null, limit = 50) => {
 	try {
-		const res = await axios.get(
-			`https://realtimecollab-8.onrender.com/api/messages/${roomId}`
-		);
-		console.log("res hai : ", res);
+		let url = `${BASE_URL}/api/messages/${roomId}?limit=${limit}`;
+		if (before) {
+			url += `&before=${before}`;
+		}
+		const res = await axios.get(url);
 		return res.data;
 	} catch (err) {
 		console.error("❌ Error fetching messages:", err);
