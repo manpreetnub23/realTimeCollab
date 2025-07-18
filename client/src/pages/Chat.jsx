@@ -204,7 +204,7 @@ const Chat = () => {
 						sidebarOpen ? "w-64 translate-x-0" : "-translate-x-full w-64"
 					)}
 				>
-					<div className="p-5">
+					<div className="p-5 mt-12">
 						<h2 className="text-xl font-semibold mb-4">Chat Rooms</h2>
 
 						{/* Create Room */}
