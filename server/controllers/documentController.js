@@ -1,4 +1,4 @@
-const Document = require("../models/DocumentModel");
+import Document from "../models/DocumentModel.js";
 
 const getAllDocuments = async (req, res) => {
     try {
@@ -62,4 +62,11 @@ const deleteDocument = async (req, res) => {
     }
 };
 
-module.exports = { getAllDocuments, getDocumentById, createDocument, updateDocument, deleteDocument };
+// ✅ ESM export
+export {
+    getAllDocuments,
+    getDocumentById,
+    createDocument,
+    updateDocument,
+    deleteDocument,
+};

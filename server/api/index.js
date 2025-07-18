@@ -1,16 +1,18 @@
 // importing required packages
-const express = require('express')
-const dotenv = require('dotenv')
-const cors = require('cors')
-const http = require('http')
-const connectDB = require('../config/db')
-const { setupSocket } = require('../config/socket')
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import http from 'http';
 
-// importing routes
-const chatRoutes = require('../routes/chatRoutes')
-const authRoutes = require('../routes/authRoutes')
-const documentRoutes = require('../routes/documentRoutes')
-const roomRoutes = require('../routes/roomRoutes')
+import connectDB from '../config/db.js';
+import { setupSocket } from '../config/socket.js';
+
+// Importing routes
+import chatRoutes from '../routes/chatRoutes.js';
+import authRoutes from '../routes/authRoutes.js';
+import documentRoutes from '../routes/documentRoutes.js';
+import roomRoutes from '../routes/roomRoutes.js';
+
 
 
 // configuring dotenv

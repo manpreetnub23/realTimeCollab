@@ -1,8 +1,9 @@
-const Room = require("../models/RoomModel");
-const { saveMessage } = require('../controllers/chatController');
+import Room from "../models/RoomModel.js";
+import { saveMessage } from '../controllers/chatController.js';
+import { Server } from 'socket.io';
 
 const setupSocket = (server) => {
-    const io = require('socket.io')(server, {
+    const io = new Server(server, {
         cors: {
             origin: '*',
             methods: ['GET', 'POST']
@@ -21,13 +22,12 @@ const setupSocket = (server) => {
             try {
                 console.log("mera data hai ", data);
                 const message = await saveMessage(data);
-                io.to(data.roomId).emit('chatMessage', message); // ✅ FIXED
+                io.to(data.roomId).emit('chatMessage', message);
             } catch (error) {
                 console.error("Error handling chatMessage:", error);
             }
         });
 
-        // Create Room (via socket)
         socket.on("createRoom", async ({ name, username }) => {
             try {
                 const existing = await Room.findOne({ name });
@@ -42,8 +42,8 @@ const setupSocket = (server) => {
                     members: [username],
                 });
 
-                socket.join(name); // join the room
-                io.to(username).emit("newRoom", newRoom); // notify the user
+                socket.join(name);
+                io.to(username).emit("newRoom", newRoom);
             } catch (err) {
                 console.error("Room creation error:", err);
                 socket.emit("roomError", "Server error while creating room");
@@ -66,8 +66,9 @@ const setupSocket = (server) => {
             console.log('User disconnected:', socket.id);
         });
     });
+
     return io;
-}
+};
 
-
-module.exports = { setupSocket };
+// ✅ Export using ES Modules
+export { setupSocket };

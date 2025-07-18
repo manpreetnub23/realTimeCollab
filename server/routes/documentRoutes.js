@@ -1,13 +1,12 @@
-const express = require("express");
-const { auth } = require("../middleware/auth");
-
-const {
+import express from 'express';
+import { auth } from "../middleware/auth.js";
+import {
     getAllDocuments,
     getDocumentById,
     createDocument,
     updateDocument,
-    deleteDocument,
-} = require("../controllers/documentController");
+    deleteDocument
+} from "../controllers/documentController.js";
 
 const router = express.Router();
 
@@ -19,4 +18,4 @@ router.post("/", createDocument);
 router.put("/:id", updateDocument);
 router.delete("/:id", deleteDocument);
 
-module.exports = router;
+export default router;

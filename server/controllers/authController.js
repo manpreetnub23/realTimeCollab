@@ -1,7 +1,8 @@
-const User = require('../models/UserModel')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv')
+import dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/UserModel.js';
+
 dotenv.config();
 
 const register = async (req, res) => {
@@ -31,9 +32,11 @@ const login = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-        const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, {
-            expiresIn: '1d',
-        });
+        const token = jwt.sign(
+            { id: user._id, username: user.username },
+            process.env.JWT_SECRET,
+            { expiresIn: '1d' }
+        );
 
         res.json({ token, user: { id: user._id, username: user.username } });
     } catch (err) {
@@ -41,4 +44,5 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { register, login };
+// ✅ ESM export
+export { register, login };

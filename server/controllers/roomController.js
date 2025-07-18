@@ -1,7 +1,5 @@
-// controllers/roomController.js
-
-const Room = require("../models/RoomModel");
-const { nanoid } = require("nanoid");
+import Room from "../models/RoomModel.js";
+import { nanoid } from "nanoid";
 
 // GET all rooms where user is a member
 const getRoomsByUser = async (req, res) => {
@@ -47,7 +45,7 @@ const joinRoom = async (req, res) => {
         return res.status(400).json({ error: "Missing fields" });
 
     try {
-        console.log("backedn mein try mein aa gaya hai , invite code hai ", inviteCode);
+        console.log("backend mein try mein aa gaya hai , invite code hai ", inviteCode);
         const room = await Room.findOne({ inviteCode });
         console.log("find one karne ke baad room mein aaya hai ", room);
         if (!room)
@@ -63,11 +61,7 @@ const joinRoom = async (req, res) => {
         console.error("Join room error:", err);
         res.status(500).json({ error: "Server error" });
     }
-
-    // const { inviteCode, username } = req.body;
-    // console.log("find one karne se pehle : ", inviteCode, username);
-    // const room = await Room.findOne({ inviteCode: inviteCode.trim() });
-    // console.log("find one karne ke baad room mein aaya hai ", room);
 };
 
-module.exports = { getRoomsByUser, createRoom, joinRoom };
+// ✅ ESM export
+export { getRoomsByUser, createRoom, joinRoom };

@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
 dotenv.config();
 
 const connectDB = async () => {
@@ -12,4 +13,5 @@ const connectDB = async () => {
     }
 };
 
-module.exports = connectDB;
+// ✅ Use ESM export
+export default connectDB;

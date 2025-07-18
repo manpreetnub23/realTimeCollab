@@ -1,10 +1,10 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
-const {
+import {
     getRoomsByUser,
     createRoom,
     joinRoom,
-} = require("../controllers/roomController");
+} from "../controllers/roomController.js";
 
 // GET /api/rooms/:username → get rooms user is in
 router.get("/:username", getRoomsByUser);
@@ -15,4 +15,4 @@ router.post("/", createRoom);
 // POST /api/rooms/join → join using invite code
 router.post("/join", joinRoom);
 
-module.exports = router;
+export default router;
