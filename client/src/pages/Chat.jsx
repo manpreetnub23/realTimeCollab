@@ -184,16 +184,25 @@ const Chat = () => {
 	return (
 		<div className="flex flex-col h-screen bg-zinc-950 text-white pt-16">
 			{/* Mobile header for toggling sidebar */}
-			<div className="sm:hidden flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900">
-				<h2 className="text-lg font-semibold">
-					#{currentRoom?.name || "No Room"}
-				</h2>
-				<button
-					onClick={() => setSidebarOpen(!sidebarOpen)}
-					className="p-2 bg-zinc-800 rounded-md"
-				>
-					<Menu />
-				</button>
+			{/* Mobile header for toggling sidebar */}
+			<div className="sm:hidden flex flex-col px-4 py-3 border-b border-zinc-800 bg-zinc-900">
+				<div className="flex items-center justify-between">
+					<h2 className="text-lg font-semibold">
+						#{currentRoom?.name || "No Room"}
+					</h2>
+					<button
+						onClick={() => setSidebarOpen(!sidebarOpen)}
+						className="p-2 bg-zinc-800 rounded-md"
+					>
+						<Menu />
+					</button>
+				</div>
+				{currentRoom?.inviteCode && (
+					<p className="text-xs text-zinc-400 mt-1">
+						Invite code:{" "}
+						<span className="font-mono">{currentRoom.inviteCode}</span>
+					</p>
+				)}
 			</div>
 
 			<div className="flex flex-1 overflow-hidden relative">

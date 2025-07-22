@@ -16,8 +16,9 @@ api.interceptors.request.use((config) => {
 });
 
 // Export API functions
-export const fetchDocuments = () => api.get("/documents");
-export const fetchDocumentById = (id) => api.get(`/documents/${id}`);
-export const createDocument = (data) => api.post("/documents", data);
-export const updateDocument = (id, data) => api.put(`/documents/${id}`, data);
-export const deleteDocument = (id) => api.delete(`/documents/${id}`);
+export const fetchDocuments = () => api.get("api/documents");
+export const fetchDocumentById = (id) => api.get(`api/documents/${id}`);
+export const createDocument = (data) => api.post("api/documents", data);
+export const updateDocument = (id, data) =>
+	api.put(`api/documents/${id}`, data);
+export const deleteDocument = (id) => api.delete(`api/documents/${id}`);
